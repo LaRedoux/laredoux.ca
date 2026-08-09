@@ -42,39 +42,9 @@
     <!-- APPAREL & CLOTHING SECTION -->
     <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; border-bottom: 1px solid var(--border-color, #333); padding-bottom: 10px;">Official Apparel Line</h3>
     
-    <div class="album-grid">
-      <div class="album-card">
-        <div class="image-wrapper">
-          <img src="assets/images/laredoux-flavicon-elephant-ballerina.png" alt="LaRedoux Official Hoodie">
-        </div>
-        <h3>LaRedoux Official Hoodie</h3>
-        <p class="price">Apparel • $55 CAD</p>
-        <div class="button-group">
-          <a href="https://laredoux.ca" target="_blank" rel="noopener noreferrer" class="btn-purchase">Shop Clothing</a>
-        </div>
-      </div>
-
-      <div class="album-card">
-        <div class="image-wrapper">
-          <img src="assets/images/laredoux-flavicon-elephant-ballerina.png" alt="LaRedoux Logo T-Shirt">
-        </div>
-        <h3>LaRedoux Graphic Tee</h3>
-        <p class="price">Apparel • $30 CAD</p>
-        <div class="button-group">
-          <a href="https://laredoux.ca" target="_blank" rel="noopener noreferrer" class="btn-purchase">Shop Clothing</a>
-        </div>
-      </div>
-
-      <div class="album-card">
-        <div class="image-wrapper">
-          <img src="assets/images/laredoux-flavicon-elephant-ballerina.png" alt="LaRedoux Embroidered Beanie">
-        </div>
-        <h3>Embroidered Beanie</h3>
-        <p class="price">Accessories • $25 CAD</p>
-        <div class="button-group">
-          <a href="https://laredoux.ca" target="_blank" rel="noopener noreferrer" class="btn-purchase">Shop Clothing</a>
-        </div>
-      </div>
+    <!-- Dynamic Fourthwall Merch Container -->
+    <div class="album-grid" id="merch-grid">
+      <!-- Fourthwall products dynamically injected via loadFourthwallMerch() -->
     </div>
 
     <!-- PHYSICAL MUSIC SECTION -->
@@ -115,6 +85,45 @@
   </section>
 
   <footer><p>© <span id="year"></span> LaRedoux. All rights reserved.</p></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    async function loadFourthwallMerch() {
+      const merchGrid = document.getElementById('merch-grid');
+      if (!merchGrid) return;
+      try {
+        const response = await fetch('./assets/data/fourthwall-products.json?t=' + new Date().getTime());
+        if (!response.ok) return;
+        const data = await response.json();
+        const rawProducts = data.results || data.products || [];
+        const apparelProducts = rawProducts.filter(item => {
+          const name = (item.name || '').toLowerCase();
+          return !name.includes('cd') && !name.includes('vinyl') && !name.includes('album');
+        });
+
+        if (apparelProducts.length === 0) return;
+
+        merchGrid.innerHTML = apparelProducts.map(product => {
+          const title = product.name || 'Official Merch';
+          const imageUrl = product.images?.[0]?.url || 'assets/images/laredoux-flavicon-elephant-ballerina.png';
+          const priceText = product.unitPrice?.value ? `$${product.unitPrice.value} ${product.unitPrice.currency || 'CAD'}` : 'Official Merch';
+          const productUrl = `https://laredoux-shop.fourthwall.com/products/${product.slug || product.handle || ''}`;
+          return `
+            <div class="album-card">
+              <div class="image-wrapper"><img src="${imageUrl}" alt="${title}"></div>
+              <h3>${title}</h3>
+              <p class="price">${priceText}</p>
+              <div class="button-group"><a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy Item</a></div>
+            </div>
+          `;
+        }).join('');
+      } catch (error) {
+        console.error('Error loading Fourthwall products:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFourthwallMerch);
+  </script>
 </body>
 </html>
