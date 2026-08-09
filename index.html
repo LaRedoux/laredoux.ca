@@ -1,4 +1,160 @@
-<script>
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LaRedoux – Official Site | Music, Live Performances & Albums</title>
+  <meta name="description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore the heartfelt music of LaRedoux on YouTube.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://laredoux.ca/">
+
+  <!-- Favicon Link -->
+  <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph / Discord / Facebook Link Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://laredoux.ca/">
+  <meta property="og:title" content="LaRedoux – Official Site | Music, Live Performances & Albums">
+  <meta property="og:description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore raw independent live-looping music.">
+  <meta property="og:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
+
+  <!-- Twitter/X Previews -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LaRedoux – Official Site">
+  <meta name="twitter:description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore raw independent live-looping music.">
+  <meta name="twitter:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
+
+  <!-- Schema Markup for Search & AI Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Camille Bowie",
+    "alternateName": "LaRedoux",
+    "url": "https://laredoux.ca",
+    "sameAs": [
+      "https://www.youtube.com/@LaRedoux",
+      "https://www.twitch.tv/laredoux",
+      "https://www.facebook.com/LaRedoux/",
+      "https://www.instagram.com/imlaredoux/",
+      "https://www.tiktok.com/@laredoux"
+    ],
+    "jobTitle": "Musician, Singer-Songwriter, Producer, Vocal Coach & Audio Engineer",
+    "description": "Multi-instrumentalist, music teacher, and sound engineer specializing in live-looping, vocal coaching, and critical audio analysis."
+  }
+  </script>
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/laredoux-logo-pride-trans-lgbtq-lgbtqia-july-2026-camille-bowie-crop.png" alt="LaRedoux" class="brand-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+        <span class="logo-text-fallback-nav" style="display: none;">LaRedoux</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="cds-vinyl.html">CDs & Vinyl</a></li>
+        <li><a href="streaming.html">Streaming</a></li>
+        <li><a href="lessons.html">Voice & Lessons</a></li>
+        <li><a href="bio-press.html">Bio & Press</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img 
+      src="./assets/images/laredoux-halloween-stream-2025.webp" 
+      alt="LaRedoux live on stage, performing guitar and vocals on a Halloween Stream"
+      class="hero-img">
+    <div class="overlay">
+      
+      <div class="hero-brand-container">
+        <img src="assets/images/laredoux-logo-pride-trans-lgbtq-lgbtqia-july-2026-camille-bowie-crop.png" alt="LaRedoux" class="hero-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';">
+        <span class="logo-text-fallback-hero" style="display: none;">LaRedoux</span>
+      </div>
+      
+      <div class="hero-video-wrapper">
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube.com/embed/W0g7ugs6YEI" 
+            title="Radiohead Live request Creep by LaRedoux" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <a href="https://www.youtube.com/@LaRedoux" target="_blank" rel="noopener noreferrer" class="btn-hero">
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="main-content">
+    <h2>Featured Releases</h2>
+    
+    <!-- Dynamic album grid with static fallback cards -->
+    <div class="album-grid" id="album-grid">
+      <div class="album-card">
+        <div class="image-wrapper">
+          <img src="./assets/images/laredoux-redvers-and-melissa-our-little-place-cd-album-live-performance-guitar-singer-youtube.jpg" alt="Our Little Place cover">
+        </div>
+        <h3>Our Little Place</h3>
+        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <div class="button-group">
+          <a href="https://www.paypal.com/ncp/payment/HVZWKZQWVUPK2" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="image-wrapper">
+          <img src="./assets/images/laredoux-redvers-bailey-if-you-want-to-fly-youve-got-to-let-go-cd-album-live-performance-guitar-singer-youtube.jpg" alt="If You Want to Fly cover">
+        </div>
+        <h3>If You Want to Fly, You’ve Got to Let Go</h3>
+        <p class="price">Vinyl: $40 CAD | CD: $20 CAD</p>
+        <div class="button-group dual-buttons">
+          <a href="https://www.paypal.com/ncp/payment/MHYQNJP6B5T4N" target="_blank" rel="noopener noreferrer" class="btn-purchase">Vinyl</a>
+          <a href="https://www.paypal.com/ncp/payment/MHYQNJP6B5T4N" target="_blank" rel="noopener noreferrer" class="btn-purchase secondary">CD</a>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="image-wrapper">
+          <img src="./assets/images/laredoux-redvers-bailey-misty-history-cd-album-live-performance-guitar-singer-youtube.png" alt="Misty History cover">
+        </div>
+        <h3>Misty History</h3>
+        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <div class="button-group">
+          <a href="https://www.paypal.com/ncp/payment/S6MAA4NLYXMRG" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="image-wrapper">
+          <img src="./assets/images/laredoux-redvers-bailey-scrapbook-cd-album-live-performance-guitar-singer-youtube.webp" alt="Scrapbook cover">
+        </div>
+        <h3>Scrapbook</h3>
+        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <div class="button-group">
+          <a href="https://www.paypal.com/ncp/payment/2F8E5BN2WHEBW" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> LaRedoux. All rights reserved.</p>
+  </footer>
+
+  <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
     async function loadFourthwallProducts() {
@@ -6,7 +162,6 @@
       if (!gridContainer) return;
 
       try {
-        // Route through CORS proxy to bypass cross-domain security blocks
         const targetUrl = encodeURIComponent('https://laredoux-shop.fourthwall.com/products.json');
         const response = await fetch(`https://api.allorigins.win/raw?url=${targetUrl}`);
         
@@ -17,7 +172,6 @@
 
         if (products.length === 0) return;
 
-        // Clear fallback cards once feed is retrieved
         gridContainer.innerHTML = '';
 
         products.forEach(product => {
@@ -46,9 +200,11 @@
           gridContainer.appendChild(card);
         });
       } catch (error) {
-        console.warn('Fourthwall auto-sync error:', error);
+        console.warn('Fourthwall auto-sync error, keeping static fallback grid:', error);
       }
     }
 
     document.addEventListener('DOMContentLoaded', loadFourthwallProducts);
   </script>
+</body>
+</html>
