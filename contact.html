@@ -40,10 +40,11 @@
     <h2>Contact LaRedoux</h2>
     <p style="color: var(--text-muted); margin-bottom: 24px;">For bookings, vocal coaching, music inquiries, or press, send a message below.</p>
 
-    <form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
 
       <!-- Web3Forms Configuration -->
       <input type="hidden" name="access_key" value="af76f883-069a-4c68-8dd2-8f832407f095">
+      <input type="hidden" name="redirect" value="https://laredoux.ca/thanks.html">
       <input type="hidden" name="subject" value="New Website Message - LaRedoux">
       <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
 
@@ -67,6 +68,9 @@
         <textarea id="message" name="message" rows="6" required placeholder="Write your message here..." style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
       </div>
 
+      <!-- Step 1: hCaptcha Widget (Styled dark to match site theme) -->
+      <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+
       <button type="submit" class="btn-purchase" style="cursor: pointer; padding: 14px; font-size: 1rem; margin-top: 8px;">Send Message</button>
     </form>
   </section>
@@ -75,8 +79,22 @@
     <p>© <span id="year"></span> LaRedoux. All rights reserved.</p>
   </footer>
 
+  <!-- Step 2: Web3Forms Captcha Script -->
+  <script src="https://web3forms.com/client/script.js" async defer></script>
+
+  <!-- Client-side Captcha Validation Script -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
+      const hCaptcha = form.querySelector('textarea[name=h-captcha-response]');
+      if (!hCaptcha || !hCaptcha.value) {
+        e.preventDefault();
+        alert("Please complete the captcha field before submitting.");
+        return;
+      }
+    });
   </script>
 </body>
 </html>
