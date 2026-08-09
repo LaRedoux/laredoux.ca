@@ -101,16 +101,15 @@
   <section class="main-content">
     <h2>Featured Releases</h2>
     
-    <!-- Dynamic album grid with static fallback cards -->
-    <div class="album-grid" id="album-grid">
+    <div class="album-grid">
       <div class="album-card">
         <div class="image-wrapper">
           <img src="./assets/images/laredoux-redvers-and-melissa-our-little-place-cd-album-live-performance-guitar-singer-youtube.jpg" alt="Our Little Place cover">
         </div>
         <h3>Our Little Place</h3>
-        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <p class="price">CD • $20 CAD</p>
         <div class="button-group">
-          <a href="https://www.paypal.com/ncp/payment/HVZWKZQWVUPK2" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+          <a href="https://laredoux-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy on Fourthwall</a>
         </div>
       </div>
 
@@ -119,10 +118,9 @@
           <img src="./assets/images/laredoux-redvers-bailey-if-you-want-to-fly-youve-got-to-let-go-cd-album-live-performance-guitar-singer-youtube.jpg" alt="If You Want to Fly cover">
         </div>
         <h3>If You Want to Fly, You’ve Got to Let Go</h3>
-        <p class="price">Vinyl: $40 CAD | CD: $20 CAD</p>
-        <div class="button-group dual-buttons">
-          <a href="https://www.paypal.com/ncp/payment/MHYQNJP6B5T4N" target="_blank" rel="noopener noreferrer" class="btn-purchase">Vinyl</a>
-          <a href="https://www.paypal.com/ncp/payment/MHYQNJP6B5T4N" target="_blank" rel="noopener noreferrer" class="btn-purchase secondary">CD</a>
+        <p class="price">Vinyl & CD Available</p>
+        <div class="button-group">
+          <a href="https://laredoux-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy on Fourthwall</a>
         </div>
       </div>
 
@@ -131,9 +129,9 @@
           <img src="./assets/images/laredoux-redvers-bailey-misty-history-cd-album-live-performance-guitar-singer-youtube.png" alt="Misty History cover">
         </div>
         <h3>Misty History</h3>
-        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <p class="price">CD • $20 CAD</p>
         <div class="button-group">
-          <a href="https://www.paypal.com/ncp/payment/S6MAA4NLYXMRG" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+          <a href="https://laredoux-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy on Fourthwall</a>
         </div>
       </div>
 
@@ -142,9 +140,9 @@
           <img src="./assets/images/laredoux-redvers-bailey-scrapbook-cd-album-live-performance-guitar-singer-youtube.webp" alt="Scrapbook cover">
         </div>
         <h3>Scrapbook</h3>
-        <p class="price">CD • $20 CAD <span class="pp">+ P&P</span></p>
+        <p class="price">CD • $20 CAD</p>
         <div class="button-group">
-          <a href="https://www.paypal.com/ncp/payment/2F8E5BN2WHEBW" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy CD</a>
+          <a href="https://laredoux-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy on Fourthwall</a>
         </div>
       </div>
     </div>
@@ -156,55 +154,6 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    async function loadFourthwallProducts() {
-      const gridContainer = document.getElementById('album-grid');
-      if (!gridContainer) return;
-
-      try {
-        const targetUrl = encodeURIComponent('https://laredoux-shop.fourthwall.com/products.json');
-        const response = await fetch(`https://api.allorigins.win/raw?url=${targetUrl}`);
-        
-        if (!response.ok) throw new Error('Proxy request failed');
-        
-        const data = await response.json();
-        const products = data.products || [];
-
-        if (products.length === 0) return;
-
-        gridContainer.innerHTML = '';
-
-        products.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'album-card';
-
-          const imageUrl = (product.images && product.images.length > 0) 
-            ? product.images[0].src 
-            : './assets/images/laredoux-flavicon-elephant-ballerina.png';
-          
-          const title = product.title || 'Merch Item';
-          const rawPrice = (product.variants && product.variants.length > 0) ? product.variants[0].price : '';
-          const formattedPrice = rawPrice ? `$${rawPrice} CAD` : '';
-          const productUrl = `https://laredoux-shop.fourthwall.com/products/${product.handle}`;
-
-          card.innerHTML = `
-            <div class="image-wrapper">
-              <img src="${imageUrl}" alt="${title}">
-            </div>
-            <h3>${title}</h3>
-            <p class="price">${formattedPrice}</p>
-            <div class="button-group">
-              <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy Item</a>
-            </div>
-          `;
-          gridContainer.appendChild(card);
-        });
-      } catch (error) {
-        console.warn('Fourthwall auto-sync error, keeping static fallback grid:', error);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', loadFourthwallProducts);
   </script>
 </body>
 </html>
