@@ -6,24 +6,31 @@
   <meta name="description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore the heartfelt music of LaRedoux on YouTube.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- Canonical Link -->
   <link rel="canonical" href="https://laredoux.ca/">
+
+  <!-- Favicon Link -->
   <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
+
   <link rel="stylesheet" href="styles.css?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Open Graph / Discord / Facebook Link Previews -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://laredoux.ca/">
   <meta property="og:title" content="LaRedoux – Official Site | Music, Live Performances & Albums">
   <meta property="og:description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore raw independent live-looping music.">
   <meta property="og:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
 
+  <!-- Twitter/X Previews -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LaRedoux – Official Site">
   <meta name="twitter:description" content="Official website of LaRedoux. Discover albums, watch live performances, and explore raw independent live-looping music.">
   <meta name="twitter:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
 
+  <!-- Schema Markup for Search & AI Engines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,17 +70,30 @@
   </nav>
 
   <header class="hero">
-    <img src="./assets/images/laredoux-halloween-stream-2025.webp" alt="LaRedoux live on stage, performing guitar and vocals on a Halloween Stream" class="hero-img">
+    <img 
+      src="./assets/images/laredoux-halloween-stream-2025.webp" 
+      alt="LaRedoux live on stage, performing guitar and vocals on a Halloween Stream"
+      class="hero-img">
     <div class="overlay">
+      
       <div class="hero-brand-container">
         <img src="assets/images/laredoux-logo-pride-trans-lgbtq-lgbtqia-july-2026-camille-bowie-crop.png" alt="LaRedoux" class="hero-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';">
         <span class="logo-text-fallback-hero" style="display: none;">LaRedoux</span>
       </div>
+      
       <div class="hero-video-wrapper">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/W0g7ugs6YEI" title="Radiohead Live request Creep by LaRedoux" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe 
+            src="https://www.youtube.com/embed/W0g7ugs6YEI" 
+            title="Radiohead Live request Creep by LaRedoux" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
         </div>
-        <a href="https://www.youtube.com/@LaRedoux" target="_blank" rel="noopener noreferrer" class="btn-hero">Watch on YouTube</a>
+        <a href="https://www.youtube.com/@LaRedoux" target="_blank" rel="noopener noreferrer" class="btn-hero">
+          Watch on YouTube
+        </a>
       </div>
     </div>
   </header>
@@ -127,9 +147,10 @@
       </div>
     </div>
 
+    <!-- Fourthwall Merch Auto-Populated Grid -->
     <h2 style="margin-top: 60px;">Apparel & Merch</h2>
     <div class="album-grid" id="merch-grid">
-      <!-- Fourthwall products dynamically injected here -->
+      <!-- Dynamically populated via JavaScript -->
     </div>
   </section>
 
@@ -145,34 +166,55 @@
       if (!merchGrid) return;
 
       try {
-        const response = await fetch('./assets/data/fourthwall-products.json');
+        // Fetch JSON with cache-busting timestamp
+        const response = await fetch('./assets/data/fourthwall-products.json?t=' + new Date().getTime());
         if (!response.ok) return;
 
         const data = await response.json();
-        const products = data.products || [];
+        const rawProducts = data.results || data.products || (Array.isArray(data) ? data : []);
+
+        // Filter out physical CD/Vinyl music items so only apparel items render in this section
+        const apparelProducts = rawProducts.filter(item => {
+          const name = (item.name || '').toLowerCase();
+          return !name.includes('cd') && !name.includes('vinyl') && !name.includes('album');
+        });
+
+        if (apparelProducts.length === 0) return;
 
         merchGrid.innerHTML = '';
 
-        products.forEach(product => {
+        apparelProducts.forEach(product => {
           const card = document.createElement('div');
           card.className = 'album-card';
 
-          const imageUrl = (product.images && product.images.length > 0)
-            ? product.images[0].src
-            : 'assets/images/laredoux-flavicon-elephant-ballerina.png';
+          const title = product.name || product.title || 'Official Merch';
 
-          const price = (product.variants && product.variants.length > 0 && product.variants[0].price)
-            ? `$${product.variants[0].price} CAD`
-            : 'Official Merch';
+          let imageUrl = 'assets/images/laredoux-flavicon-elephant-ballerina.png';
+          if (product.images && product.images.length > 0) {
+            imageUrl = product.images[0].url || product.images[0].transformedUrl || imageUrl;
+          }
 
-          const productUrl = `https://laredoux-shop.fourthwall.com/products/${product.handle}`;
+          let priceText = 'Official Merch';
+          if (product.variants && product.variants.length > 0) {
+            const v = product.variants[0];
+            if (v.unitPrice && v.unitPrice.value) {
+              priceText = `$${v.unitPrice.value} ${v.unitPrice.currency || 'USD'}`;
+            }
+          } else if (product.unitPrice && product.unitPrice.value) {
+            priceText = `$${product.unitPrice.value} ${product.unitPrice.currency || 'USD'}`;
+          }
+
+          const slug = product.slug || product.handle || '';
+          const productUrl = slug 
+            ? `https://laredoux-shop.fourthwall.com/products/${slug}`
+            : 'https://laredoux-shop.fourthwall.com/';
 
           card.innerHTML = `
             <div class="image-wrapper">
-              <img src="${imageUrl}" alt="${product.title}">
+              <img src="${imageUrl}" alt="${title}">
             </div>
-            <h3>${product.title}</h3>
-            <p class="price">${price}</p>
+            <h3>${title}</h3>
+            <p class="price">${priceText}</p>
             <div class="button-group">
               <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="btn-purchase">Buy Item</a>
             </div>
@@ -180,7 +222,7 @@
           merchGrid.appendChild(card);
         });
       } catch (err) {
-        console.log('Merch auto-sync pending initial run:', err);
+        console.error('Merch auto-sync rendering error:', err);
       }
     }
 
