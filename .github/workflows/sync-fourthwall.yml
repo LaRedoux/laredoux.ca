@@ -2,8 +2,8 @@ name: Sync Fourthwall Store Products
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Runs automatically every 6 hours
-  workflow_dispatch: # Allows you to manually trigger a sync anytime
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   sync-shop:
@@ -17,7 +17,7 @@ jobs:
       - name: Fetch Fourthwall Products JSON
         run: |
           mkdir -p assets/data
-          curl -s "https://laredoux-shop.fourthwall.com/products.json" -o assets/data/fourthwall-products.json
+          curl -sSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" "https://laredoux-shop.fourthwall.com/products.json" -o assets/data/fourthwall-products.json
 
       - name: Commit and Push Changes
         run: |
