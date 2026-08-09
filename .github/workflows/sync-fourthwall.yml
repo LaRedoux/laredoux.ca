@@ -17,7 +17,7 @@ jobs:
       - name: Fetch Fourthwall Products JSON
         run: |
           mkdir -p assets/data
-          curl -sSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" "https://laredoux-shop.fourthwall.com/collections/all.json" -o assets/data/fourthwall-products.json
+          curl -sSL "https://storefront-api.fourthwall.com/v1/collections/all/products?storefront_token=${{ secrets.FOURTHWALL_TOKEN }}" -o assets/data/fourthwall-products.json
 
       - name: Commit and Push Changes
         run: |
