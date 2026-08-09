@@ -1,22 +1,30 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact LaRedoux | Inquiries & Bookings</title>
+  <title>LaRedoux – Contact | Get in Touch</title>
+  <meta name="description" content="Contact LaRedoux for music inquiries, live performance bookings, vocal coaching, and audio engineering.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://laredoux.ca/contact.html">
+
+  <!-- Favicon Link -->
+  <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
+
+  <link rel="stylesheet" href="styles.css?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- Favicon Link -->
-  <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
-
 </head>
 <body>
+
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="nav-brand">LaRedoux</a>
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/laredoux-logo-pride-trans-lgbtq-lgbtqia-july-2026-camille-bowie-crop.png" alt="LaRedoux" class="brand-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+        <span class="logo-text-fallback-nav" style="display: none;">LaRedoux</span>
+      </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="cds-vinyl.html">CDs & Vinyl</a></li>
@@ -28,30 +36,47 @@
     </div>
   </nav>
 
-  <section class="main-content internal-page text-layout">
-    <h2>Get In Touch</h2>
-    <p class="section-intro">For lesson availability, direct booking inquires, or general messages, use the platform below.</p>
+  <section class="main-content" style="max-width: 600px; margin: 40px auto;">
+    <h2>Contact LaRedoux</h2>
+    <p style="color: var(--text-muted); margin-bottom: 24px;">For bookings, vocal coaching, music inquiries, or press, send a message below.</p>
 
-    <div class="contact-wrapper">
-      <form action="#" method="POST" class="contact-form" onsubmit="event.preventDefault(); alert('Placeholder Form Submitted!');">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" required placeholder="Enter name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" required placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" rows="6" required placeholder="Type your message here..."></textarea>
-        </div>
-        <button type="submit" class="btn-hero" style="border: none; width: 100%; cursor: pointer;">Send Message</button>
-      </form>
-    </div>
+    <form action="https://formsubmit.co/info@laredoux.com" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+
+      <!-- FormSubmit Custom Settings -->
+      <input type="hidden" name="_subject" value="New Website Message - LaRedoux">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+
+      <div>
+        <label for="name" style="display: block; font-weight: 600; margin-bottom: 6px;">Name</label>
+        <input type="text" id="name" name="Name" required placeholder="Your Name" style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-main); font-family: inherit;">
+      </div>
+
+      <div>
+        <label for="email" style="display: block; font-weight: 600; margin-bottom: 6px;">Email Address</label>
+        <input type="email" id="email" name="Email" required placeholder="your.email@example.com" style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-main); font-family: inherit;">
+      </div>
+
+      <div>
+        <label for="subject" style="display: block; font-weight: 600; margin-bottom: 6px;">Subject</label>
+        <input type="text" id="subject" name="Subject" required placeholder="Booking / Lessons / General Inquiry" style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-main); font-family: inherit;">
+      </div>
+
+      <div>
+        <label for="message" style="display: block; font-weight: 600; margin-bottom: 6px;">Message</label>
+        <textarea id="message" name="Message" rows="6" required placeholder="Write your message here..." style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
+      </div>
+
+      <button type="submit" class="btn-purchase" style="cursor: pointer; padding: 14px; font-size: 1rem; margin-top: 8px;">Send Message</button>
+    </form>
   </section>
 
-  <footer><p>© <span id="year"></span> LaRedoux. All rights reserved.</p></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <footer>
+    <p>© <span id="year"></span> LaRedoux. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
