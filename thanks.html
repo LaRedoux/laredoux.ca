@@ -1,1 +1,58 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LaRedoux – Message Sent</title>
+  <meta name="description" content="Thank you for contacting LaRedoux. Your message has been received successfully.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://laredoux.ca/thanks.html">
+
+  <!-- Favicon Link -->
+  <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
+
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #000000; color: #ffffff;">
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/laredoux-logo-pride-trans-lgbtq-lgbtqia-july-2026-camille-bowie-crop.png" alt="LaRedoux" class="brand-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+        <span class="logo-text-fallback-nav" style="display: none;">LaRedoux</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cds-vinyl.html">CDs & Vinyl</a></li>
+        <li><a href="streaming.html">Streaming</a></li>
+        <li><a href="lessons.html">Voice & Lessons</a></li>
+        <li><a href="bio-press.html">Bio & Press</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="main-content" style="max-width: 600px; margin: 80px auto; text-align: center; padding: 0 20px;">
+    <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 16px;">Form submitted successfully!</h2>
+    <p style="color: #cccccc; margin: 20px 0 32px; font-size: 1.1rem; line-height: 1.6;">
+      Thank you for reaching out to us.<br>
+      We'll review your submission and get back to you soon.
+    </p>
+    <div>
+      <a href="contact.html" class="btn-purchase" style="display: inline-block; padding: 14px 28px; text-decoration: none; font-weight: 600;">Go Back</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> LaRedoux. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
