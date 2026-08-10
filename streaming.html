@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Live Streaming & Digital Audio | LaRedoux</title>
-  <meta name="description" content="Watch LaRedoux live streams on YouTube and Twitch. Join the Discord community, make song requests, and connect with live looping performances.">
+  <meta name="description" content="Watch LaRedoux live streams on YouTube and Twitch. Join the Discord community, make song requests, and connect with live performances.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Canonical Link -->
@@ -12,7 +12,7 @@
   <!-- Favicon Link -->
   <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
 
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,13 +31,14 @@
         <li><a href="lessons.html">Voice & Lessons</a></li>
         <li><a href="bio-press.html">Bio & Press</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><button id="myspace-btn" onclick="toggleMySpaceMode()" class="btn-myspace-toggle">✨ 2006 Mode</button></li>
       </ul>
     </div>
   </nav>
 
   <section class="main-content internal-page text-layout">
     <h2>Live Streams & Digital Music</h2>
-    <p class="section-intro">Catch the live looping experience, acoustic sets, and community hangouts directly through your favorite platforms.</p>
+    <p class="section-intro">Catch the live performance experience, acoustic sets, and community hangouts directly through your favorite platforms.</p>
     
     <div class="info-card">
       <h3>🔴 YouTube and Twitch Live Streams</h3>
@@ -59,13 +60,35 @@
       
       <div class="info-card">
         <h3>☕ Support on StreamElements</h3>
-        <p>Tips are absolutely never expected, but they go directly towards supporting the generation of high-quality audio equipment and creative tools.</p>
+        <p>Tips are absolutely never expected, but they go directly towards supporting high-quality audio equipment and creative tools.</p>
         <a href="https://streamelements.com/laredoux-3c66f/tip" target="_blank" rel="noopener noreferrer" class="btn-purchase secondary text-center">Send a Tip</a>
       </div>
     </div>
   </section>
 
   <footer><p>© <span id="year"></span> LaRedoux. All rights reserved.</p></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <script>
+    function toggleMySpaceMode() {
+      const body = document.body;
+      const btn = document.getElementById('myspace-btn');
+      body.classList.toggle('myspace-theme');
+      
+      if (body.classList.contains('myspace-theme')) {
+        btn.textContent = '❌ Modern Mode';
+        localStorage.setItem('myspace_theme', 'enabled');
+      } else {
+        btn.textContent = '✨ 2006 Mode';
+        localStorage.setItem('myspace_theme', 'disabled');
+      }
+    }
+
+    if (localStorage.getItem('myspace_theme') === 'enabled') {
+      document.body.classList.add('myspace-theme');
+      document.getElementById('myspace-btn').textContent = '❌ Modern Mode';
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
