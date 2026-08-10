@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Biography & Press | LaRedoux Backstory</title>
-  <meta name="description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her raw songwriting style, and the inclusive streaming community.">
+  <meta name="description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her thoughtful songwriting style, and the inclusive streaming community.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Canonical Link -->
@@ -12,7 +12,7 @@
   <!-- Favicon Link -->
   <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
 
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,13 +21,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://laredoux.ca/bio-press.html">
   <meta property="og:title" content="LaRedoux – Bio & Press | Music, History & Community">
-  <meta property="og:description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her raw songwriting style, and the inclusive streaming community.">
+  <meta property="og:description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her thoughtful songwriting style, and the inclusive streaming community.">
   <meta property="og:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
 
   <!-- Twitter/X Previews -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LaRedoux – Bio & Press">
-  <meta name="twitter:description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her raw songwriting style, and the inclusive streaming community.">
+  <meta name="twitter:description" content="The story behind LaRedoux. Explore Camille Bowie's musical journey from Gloucester to Quebec, her thoughtful songwriting style, and the inclusive streaming community.">
   <meta name="twitter:image" content="https://laredoux.ca/assets/images/laredoux-halloween-stream-2025.webp">
 
   <!-- Schema Markup for Search & AI Engines -->
@@ -46,7 +46,7 @@
       "https://www.tiktok.com/@laredoux"
     ],
     "jobTitle": "Musician, Singer-Songwriter, Producer, Vocal Coach & Audio Engineer",
-    "description": "Multi-instrumentalist, music teacher, and sound engineer specializing in live-looping, vocal coaching, and critical audio analysis."
+    "description": "Multi-instrumentalist, music teacher, and sound engineer specializing in live performance, vocal coaching, and critical audio analysis."
   }
   </script>
 </head>
@@ -65,6 +65,7 @@
         <li><a href="lessons.html">Voice & Lessons</a></li>
         <li><a href="bio-press.html" class="active">Bio & Press</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><button id="myspace-btn" onclick="toggleMySpaceMode()" class="btn-myspace-toggle">✨ 2006 Mode</button></li>
       </ul>
     </div>
   </nav>
@@ -76,7 +77,7 @@
       <h3>From Gloucester to Trois-Rivières</h3>
       <p>LaRedoux started in Gloucester, England, grown from the seed planted at lunchtime, hiding in the school music room writing songs with friends. Behind the project is songwriter and multi-instrumentalist Camille Bowie. Before settling in Trois-Rivières, Quebec, Camille spent two decades living, working and performing across more than 20 countries, carving out an independent path fueled by a restless search for belonging and genuine human connection.</p>
       
-      <h3>Raw Strings & Cinematic Space</h3>
+      <h3>Authentic Strings & Cinematic Space</h3>
       <p>On stage, Camille builds a captivating world out of humorous, thoughtful lyrics and goosebump-inducing melodies. Shifting between delicate electric fingerstyle and driving rhythm guitar in drop tunings, she commands an eclectic repertoire of over a hundred songs.</p>
       <p>LaRedoux is ultimately envisioned as a full collaborative band, and Camille is currently looking for the right local musicians in Quebec to complete that lineup. For now, the project operates as a self-contained solo force. Loop station and sample pad appear occasionally as atmospheric colors and the heart of the show remains pure musicianship and a sense of fun. When LaRedoux gets lost in an outro loop, expect slow attack filters, lush reverbs, and vocal layering to frame the soaring melodies of original tracks like <em>Giving It Up</em> and <em>Hounded By Ghosts</em>.</p>
       
@@ -103,8 +104,27 @@
 
   <footer><p>© <span id="year"></span> LaRedoux. All rights reserved.</p></footer>
 
-  <!-- Video Swap Script -->
+  <!-- Scripts -->
   <script>
+    function toggleMySpaceMode() {
+      const body = document.body;
+      const btn = document.getElementById('myspace-btn');
+      body.classList.toggle('myspace-theme');
+      
+      if (body.classList.contains('myspace-theme')) {
+        btn.textContent = '❌ Modern Mode';
+        localStorage.setItem('myspace_theme', 'enabled');
+      } else {
+        btn.textContent = '✨ 2006 Mode';
+        localStorage.setItem('myspace_theme', 'disabled');
+      }
+    }
+
+    if (localStorage.getItem('myspace_theme') === 'enabled') {
+      document.body.classList.add('myspace-theme');
+      document.getElementById('myspace-btn').textContent = '❌ Modern Mode';
+    }
+
     function playEmbeddedVideo(element) {
       element.removeAttribute('onclick');
       element.innerHTML = '<iframe src="https://www.youtube.com/embed/6G1oYFkHf4c?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width: 100%; height: 100%; border: none;"></iframe>';
