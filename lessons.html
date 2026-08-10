@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Voice & Music Lessons | LaRedoux Coaching</title>
-  <meta name="description" content="Private vocal coaching, guitar, live-looping, and audio engineering lessons with LaRedoux. Available online worldwide or in person in Trois-Rivières.">
+  <meta name="description" content="Private vocal coaching, guitar, music production, and audio engineering lessons with LaRedoux. Available online worldwide or in person in Trois-Rivières.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Canonical Link -->
@@ -12,7 +12,7 @@
   <!-- Favicon Link -->
   <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
 
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,6 +31,7 @@
         <li><a href="lessons.html" class="active">Voice & Lessons</a></li>
         <li><a href="bio-press.html">Bio & Press</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><button id="myspace-btn" onclick="toggleMySpaceMode()" class="btn-myspace-toggle">✨ 2006 Mode</button></li>
       </ul>
     </div>
   </nav>
@@ -47,7 +48,7 @@
 
       <div class="info-card">
         <h3>🎸 Guitar, Sound Engineering, Production & Looping</h3>
-        <p>Learn chords, rhythmic arrangements, songwriting, live-looping setups, and how to make your recorded tracks sound great.</p>
+        <p>Learn chords, rhythmic arrangements, songwriting, live performance setups, and how to make your recorded tracks sound great.</p>
       </div>
     </div>
 
@@ -59,6 +60,28 @@
   </section>
 
   <footer><p>© <span id="year"></span> LaRedoux. All rights reserved.</p></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <script>
+    function toggleMySpaceMode() {
+      const body = document.body;
+      const btn = document.getElementById('myspace-btn');
+      body.classList.toggle('myspace-theme');
+      
+      if (body.classList.contains('myspace-theme')) {
+        btn.textContent = '❌ Modern Mode';
+        localStorage.setItem('myspace_theme', 'enabled');
+      } else {
+        btn.textContent = '✨ 2006 Mode';
+        localStorage.setItem('myspace_theme', 'disabled');
+      }
+    }
+
+    if (localStorage.getItem('myspace_theme') === 'enabled') {
+      document.body.classList.add('myspace-theme');
+      document.getElementById('myspace-btn').textContent = '❌ Modern Mode';
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
