@@ -12,7 +12,7 @@
   <!-- Favicon Link -->
   <link rel="icon" type="image/png" href="assets/images/laredoux-flavicon-elephant-ballerina.png">
 
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -65,6 +65,7 @@
         <li><a href="lessons.html">Voice & Lessons</a></li>
         <li><a href="bio-press.html">Bio & Press</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><button id="myspace-btn" onclick="toggleMySpaceMode()" class="btn-myspace-toggle">✨ MySpace 2006</button></li>
       </ul>
     </div>
   </nav>
@@ -160,6 +161,25 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleMySpaceMode() {
+      const body = document.body;
+      const btn = document.getElementById('myspace-btn');
+      body.classList.toggle('myspace-theme');
+      
+      if (body.classList.contains('myspace-theme')) {
+        btn.textContent = '❌ Modern Mode';
+        localStorage.setItem('myspace_theme', 'enabled');
+      } else {
+        btn.textContent = '✨ MySpace 2006';
+        localStorage.setItem('myspace_theme', 'disabled');
+      }
+    }
+
+    if (localStorage.getItem('myspace_theme') === 'enabled') {
+      document.body.classList.add('myspace-theme');
+      document.getElementById('myspace-btn').textContent = '❌ Modern Mode';
+    }
 
     async function loadFourthwallMerch() {
       const merchGrid = document.getElementById('merch-grid');
