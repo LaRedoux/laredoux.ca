@@ -124,7 +124,25 @@
 
         if (apparelProducts.length === 0) return;
 
-        merchGrid.innerHTML = apparelProducts.map(product => {
+        // Responsive limit rules: 
+        // 8 items if 4 columns (wide), 6 items if 3 columns, 8 items if 2 columns, all if 1 column
+        function getProductLimit() {
+          const width = window.innerWidth;
+          if (width >= 1024) {
+            return 8; // 4 columns
+          } else if (width >= 768) {
+            return 6; // 3 columns
+          } else if (width >= 480) {
+            return 8; // 2 columns
+          } else {
+            return apparelProducts.length; // 1 column (all)
+          }
+        }
+
+        const limit = getProductLimit();
+        const productsToDisplay = apparelProducts.slice(0, limit);
+
+        merchGrid.innerHTML = productsToDisplay.map(product => {
           const title = product.name || 'Official Merch';
           const imageUrl = product.images?.[0]?.url || 'assets/images/laredoux-flavicon-elephant-ballerina.png';
           const priceText = product.unitPrice?.value ? `$${product.unitPrice.value} ${product.unitPrice.currency || 'CAD'}` : 'Official Merch';
