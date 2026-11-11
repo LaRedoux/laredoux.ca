@@ -17,7 +17,7 @@ jobs:
       - name: Fetch Fourthwall Products JSON
         run: |
           mkdir -p assets/data
-          curl -sSL "https://storefront-api.fourthwall.com/v1/collections/all/products?storefront_token=${{ secrets.FOURTHWALL_TOKEN }}" -o assets/data/fourthwall-products.json
+          curl -sSL "https://storefront-api.fourthwall.com/v1/collections/all/products?size=50&storefront_token=${{ secrets.FOURTHWALL_TOKEN }}" -o assets/data/fourthwall-products.json
 
       - name: Commit and Push Changes
         run: |
